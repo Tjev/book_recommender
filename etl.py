@@ -90,7 +90,7 @@ df = df.merge(cdf, on=["Book-Title", "Book-Author"])
 df = df.groupby(["User-ID", "ISBN"])["Book-Rating"].mean().to_frame().reset_index()
 
 # Load into database
-with sqlite3.connect("example.db") as con:
+with sqlite3.connect("books_ratings.db") as con:
     df.to_sql("ratings", con, if_exists="replace")
     cdf.to_sql("books", con, if_exists="replace")
     popular_cdf.to_sql("demo_popular_books", con, if_exists="replace")
